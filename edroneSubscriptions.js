@@ -342,8 +342,6 @@ if (box !== null) {
     })
 };
 
-//interesting case: https://edrone.atlassian.net/browse/ED-48775
-
 //code loaded after the last step od checkout is on the screen
 const btnPlaceOrder = document.querySelector('.sc-bBHHxi.ePKXte')
 let lastStepForm = false

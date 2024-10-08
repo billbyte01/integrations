@@ -1,4 +1,5 @@
 // add_to_cart homepage with pathname
+
 const currentPathname = window.location.pathname
 var xxx = 'ddd'
 if (currentPathname === '/') {

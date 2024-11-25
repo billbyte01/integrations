@@ -1,9 +1,9 @@
 // the best, universal plug-in for all forms
 
-const nlSubscriptionForm = document.querySelector('form[action="https://amso.pl/settings.php"]');
+const nlSubscriptionForm = document.querySelector('form[action="XXX"]');
 if (nlSubscriptionForm !== null) {
-    const emailValue = nlSubscriptionForm.querySelector('#mailing_email');
-    const subCheckbox = nlSubscriptionForm.querySelector('#mailing_policy');
+    const emailValue = nlSubscriptionForm.querySelector('XXX');
+    const subCheckbox = nlSubscriptionForm.querySelector('XXX');
     nlSubscriptionForm.addEventListener('submit', () => {
         if (subCheckbox.checked) {
             _edrone.email = emailValue.value;
@@ -16,13 +16,13 @@ if (nlSubscriptionForm !== null) {
 
 // when there is no 'form' we can use old version for 'click' and 'keydown' listening
 
-const buttonSubscription = document.querySelector('button[data-link-action="save-customer"]');
+const buttonSubscription = document.querySelector('XXX');
 if (buttonSubscription !== null) {
-    const emailValue = document.querySelector('input[name="email"]');
-    const firstName = document.querySelector('input[name="firstname"]');
-    const lastName = document.querySelector('input[name="lastname"]');
-    const subCheckbox = document.querySelector('input[name="newsletter"]');
-	const userPhone = document.querySelector('input[name="phone"]');
+    const emailValue = document.querySelector('XXX');
+	const subCheckbox = document.querySelector('XXX');
+    const firstName = document.querySelector('XXX');
+    const lastName = document.querySelector('XXX');
+	const userPhone = document.querySelector('XXX');
     document.addEventListener("keydown", event => {
         if (event.key === "Enter") {
             if (subCheckbox.checked) {
@@ -49,7 +49,7 @@ if (buttonSubscription !== null) {
     })
 }
 
-// order many steps form:
+// order form with many steps example plug-in:
 
 if (window.location.href.includes('zamowienie,4')) {
 	document.querySelector('body').addEventListener('click', function (e) {

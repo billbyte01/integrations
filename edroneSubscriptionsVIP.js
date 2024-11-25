@@ -1,13 +1,13 @@
 // the best, universal plug-in for all forms
 
-const nlFooterForm = document.querySelector('form[action="https://amso.pl/settings.php"]');
-if (nlFooterForm !== null) {
-    const mail = nlFooterForm.querySelector('#mailing_email');
-    const box = nlFooterForm.querySelector('#mailing_policy');
-    nlFooterForm.addEventListener('submit', () => {
-        if (box.checked) {
-            _edrone.email = mail.value;
-            _edrone.customer_tags = 'Footer';
+const nlSubscriptionForm = document.querySelector('form[action="https://amso.pl/settings.php"]');
+if (nlSubscriptionForm !== null) {
+    const emailValue = nlSubscriptionForm.querySelector('#mailing_email');
+    const subCheckbox = nlSubscriptionForm.querySelector('#mailing_policy');
+    nlSubscriptionForm.addEventListener('submit', () => {
+        if (subCheckbox.checked) {
+            _edrone.email = emailValue.value;
+            _edrone.customer_tags = 'TEST';
             _edrone.action_type = 'subscribe';
             _edrone.init();
         }
@@ -16,30 +16,33 @@ if (nlFooterForm !== null) {
 
 // when there is no 'form' we can use old version for 'click' and 'keydown' listening
 
-const buttonRegister = document.querySelector('button[data-link-action="save-customer"]');
-if (buttonRegister !== null) {
-    const mail = document.querySelector('input[name="email"]');
-    const name = document.querySelector('input[name="firstname"]');
-    const surname = document.querySelector('input[name="lastname"]');
-    const box = document.querySelector('input[name="newsletter"]');
+const buttonSubscription = document.querySelector('button[data-link-action="save-customer"]');
+if (buttonSubscription !== null) {
+    const emailValue = document.querySelector('input[name="email"]');
+    const firstName = document.querySelector('input[name="firstname"]');
+    const lastName = document.querySelector('input[name="lastname"]');
+    const subCheckbox = document.querySelector('input[name="newsletter"]');
+	const userPhone = document.querySelector('input[name="phone"]');
     document.addEventListener("keydown", event => {
         if (event.key === "Enter") {
-            if (box.checked) {
-                _edrone.email = mail.value;
-                _edrone.first_name = name.value;
-                _edrone.last_name = surname.value;
-                _edrone.customer_tags = 'Rejestracja';
+            if (subCheckbox.checked) {
+                _edrone.email = emailValue.value;
+                _edrone.first_name = firstName.value;
+                _edrone.last_name = lastName.value;
+				_edrone.phone = userPhone.value;
+                _edrone.customer_tags = 'TEST';
                 _edrone.action_type = 'subscribe';
                 _edrone.init();
             }
         }
     })
-    buttonRegister.addEventListener('click', () => {
-        if (box.checked) {
-            _edrone.email = mail.value;
-            _edrone.first_name = name.value;
-            _edrone.last_name = surname.value;
-            _edrone.customer_tags = 'Rejestracja';
+    buttonSubscription.addEventListener('click', () => {
+        if (subCheckbox.checked) {
+            _edrone.email = emailValue.value;
+            _edrone.first_name = firstName.value;
+            _edrone.last_name = lastName.value;
+			_edrone.phone = userPhone.value;
+            _edrone.customer_tags = 'TEST';
             _edrone.action_type = 'subscribe';
             _edrone.init();
         }

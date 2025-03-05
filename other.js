@@ -20,3 +20,29 @@
 		originalInit.apply(this, arguments)
 	}
 })()
+
+//blocking orders from one category, kawawbiurze.pl
+const updateInit = () => {
+    if (typeof _edrone.init === 'function') {
+        const oldInit = _edrone.init;
+        _edrone.init = () => {
+            if (
+              (_edrone.action_type !== 'order') ||
+              (_edrone.product_category_ids && !_edrone.product_category_ids.includes("412"))
+            ) {
+                oldInit();
+            }
+        };
+
+        return true;
+    }
+    return false;
+};
+
+if (!updateInit()) {
+		const checkForInitInterval = setInterval(() => {
+			if (updateInit()) {
+				clearInterval(checkForInitInterval);
+			}
+		}, 5);
+}

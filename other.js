@@ -46,3 +46,13 @@ if (!updateInit()) {
 			}
 		}, 5);
 }
+
+//fake identification
+const asdf = document.querySelector('form[action="https://www.bobowozki.com.pl/newsletter/subscriber/new/"] button')
+asdf.addEventListener('mousedown', () => {
+    const emailasdf = document.querySelector('#newsletter-subscribe')
+    _edrone.email = emailasdf.value
+    _edrone.customer_tags = 'test'
+	_edrone.action_type = 'other'
+    _edrone.init
+})

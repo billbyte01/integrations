@@ -376,3 +376,24 @@ function checkoutNlForm() {
         }, 1500);
     }
 }
+
+//adding to local storage info about subscription consent from the first step (for multisteps checkouts)
+if (window.location.href.indexOf('https://www.sklep.vileda.pl/koszyk.php') > -1) {
+	document.addEventListener('change', function (event) {
+		if (event.target.matches('#codes-agreement input[type="checkbox"]')) {
+			if (event.target.checked) {
+				localStorage.setItem('checkboxChecked', 'true')
+			} else {
+				localStorage.removeItem('checkboxChecked')
+			}
+		}
+	})
+}
+//the condition for triggering the trace in other step
+if (localStorage.getItem('checkboxChecked') === 'true') {
+}
+//or basic form with addEventListener:
+// const checkboxTEST1 = document.querySelector('#codes-agreement input[type="checkbox"]')
+// checkboxTEST1.addEventListener('change', function () {
+// 	console.log('Checkbox is now:', this.checked ? 'Checked' : 'Unchecked')
+// })

@@ -23,36 +23,31 @@
 
 //blocking orders from one category, kawawbiurze.pl
 const updateInit = () => {
-    if (typeof _edrone.init === 'function') {
-        const oldInit = _edrone.init;
-        _edrone.init = () => {
-            if (
-              (_edrone.action_type !== 'order') ||
-              (_edrone.product_category_ids && !_edrone.product_category_ids.includes("412"))
-            ) {
-                oldInit();
-            }
-        };
+	if (typeof _edrone.init === 'function') {
+		const oldInit = _edrone.init
+		_edrone.init = () => {
+			if (_edrone.action_type !== 'order' || (_edrone.product_category_ids && !_edrone.product_category_ids.includes('412'))) {
+				oldInit()
+			}
+		}
 
-        return true;
-    }
-    return false;
-};
+		return true
+	}
+	return false
+}
 
 if (!updateInit()) {
-		const checkForInitInterval = setInterval(() => {
-			if (updateInit()) {
-				clearInterval(checkForInitInterval);
-			}
-		}, 5);
+	const checkForInitInterval = setInterval(() => {
+		if (updateInit()) {
+			clearInterval(checkForInitInterval)
+		}
+	}, 5)
 }
 
 //fake identification
-const asdf = document.querySelector('form[action="https://www.bobowozki.com.pl/newsletter/subscriber/new/"] button')
-asdf.addEventListener('mousedown', () => {
-    const emailasdf = document.querySelector('#newsletter-subscribe')
-    _edrone.email = emailasdf.value
-    _edrone.customer_tags = 'test'
+const testingIdentification = document.querySelector('.section-instafeed-home .btn')
+testingIdentification.addEventListener('mousedown', () => {
+	_edrone.email = 'test135@gmail.com'
 	_edrone.action_type = 'other'
-    _edrone.init
+	_edrone.init()
 })

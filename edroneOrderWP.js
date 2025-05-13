@@ -1,4 +1,4 @@
-// https://naszapszczelarnia.pl/ - order plug-in added in admin panel
+// order plug-in added in admin panel
 const orderReceived = window.location.href.includes('order-received')
 if (orderReceived) {
 	const products = {

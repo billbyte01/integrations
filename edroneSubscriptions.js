@@ -42,7 +42,7 @@
 })();
 
 
-// get email from an attrubute using '.getAttribute' (borgio.co order page)
+// get email from an attrubute using '.getAttribute'
 (function(){
   document.querySelector('body').addEventListener('mousedown', function(e){
     var emailValue = document.querySelector('#checkout-review-submit > ol'); //we need to find an element with an email
@@ -121,129 +121,6 @@
   })
 })();
 
-
-//subscription depending on URL - 'switch - case' and 'if'
-(function () {
-  document.querySelector('body').addEventListener('mousedown', function (e) {
-    var emailValue = document.querySelector('input[name="email"]');
-    var submitButton = document.querySelector('button[name="action"]');
-    var subscriptionCheckbox = document.querySelector('#regulations')
-    var firstNameInput = document.querySelector('input[name="username"]')
-    if (firstNameInput) {
-      _edrone.first_name = firstNameInput.value;
-    }
-    var eventPath = e.path || e.composedPath();
-    if (localStorage.getItem('sub') === null) {
-      document.addEventListener("keydown", event => {
-        if (event.key === "Enter") {
-          if (emailValue) {
-            _edrone.email = emailValue.value;
-            _edrone.action_type = 'subscribe';
-            switch (window.location.href) {
-              case 'https://amso.pl/AMSO-KRAKOW-Komputery-Laptopy-Poleasingowe-stock-2-pol.html':
-                _edrone.customer_tags = 'Czarnowiejska'
-                break;
-              case 'https://amso.pl/AMSO-KRAKOW-PODGORZE-Komputery-Laptopy-Poleasing-stock-12-pol.html':
-                _edrone.customer_tags = 'Wielicka'
-                break;
-              case 'https://amso.pl/AMSO-RZESZOW-Komputery-Laptopy-Poleasingowe-stock-6-pol.html':
-                _edrone.customer_tags = 'Rzeszów'
-                break;
-              case 'https://amso.pl/AMSO-KATOWICE-Komputery-Laptopy-Poleasingowe-stock-5-pol.html':
-                _edrone.customer_tags = 'Katowice'
-                break;
-              case 'https://amso.pl/AMSO-LODZ-Komputery-Laptopy-Poleasingowe-stock-4-pol.html':
-                _edrone.customer_tags = 'Łódź'
-                break;
-              case 'https://amso.pl/AMSO-LUBLIN-Komputery-Laptopy-Poleasingowe-stock-7-pol.html':
-                _edrone.customer_tags = 'Lublin'
-                break;
-              case 'https://amso.pl/AMSO-KIELCE-Komputery-Laptopy-Poleasingowe-stock-13-pol.html':
-                _edrone.customer_tags = 'Kielce'
-                break;
-              case 'https://amso.pl/AMSO-WARSZAWA-Komputery-Laptopy-Poleasingowe-stock-3-pol.html':
-                _edrone.customer_tags = 'Warszawa'
-                break;
-              case 'https://amso.pl/AMSO-BIELSKO-BIALA-Komputery-Laptopy-Poleasingow-stock-14-pol.html':
-                _edrone.customer_tags = 'BielskoBiała'
-                break;
-              case 'https://amso.pl/AMSO-GDANSK-Komputery-Laptopy-Poleasingowe-stock-17-pol.html':
-                _edrone.customer_tags = 'Gdańsk'
-                break;
-              case 'https://amso.pl/AMSO-WROCLAW-Komputery-Laptopy-Poleasingowe-stock-16-pol.html':
-                _edrone.customer_tags = 'Wrocław'
-                break;
-              case 'https://amso.pl/AMSO-POZNAN-Komputery-Laptopy-Poleasingowe-stock-15-pol.html':
-                _edrone.customer_tags = 'Poznań'
-                break;
-            }
-            if (subscriptionCheckbox && subscriptionCheckbox.checked) {
-              _edrone.subscriber_status = '1'
-              _edrone.init();
-              localStorage.setItem("sub", "1");
-            }
-          }
-        }
-      })
-      if (eventPath.includes(submitButton)) {
-        if (emailValue) {
-          _edrone.email = emailValue.value;
-          _edrone.action_type = 'subscribe';
-          switch (window.location.href) {
-            case 'https://amso.pl/AMSO-KRAKOW-Komputery-Laptopy-Poleasingowe-stock-2-pol.html':
-              _edrone.customer_tags = 'Czarnowiejska'
-              break;
-            case 'https://amso.pl/AMSO-KRAKOW-PODGORZE-Komputery-Laptopy-Poleasing-stock-12-pol.html':
-              _edrone.customer_tags = 'Wielicka'
-              break;
-            case 'https://amso.pl/AMSO-RZESZOW-Komputery-Laptopy-Poleasingowe-stock-6-pol.html':
-              _edrone.customer_tags = 'Rzeszów'
-              break;
-            case 'https://amso.pl/AMSO-KATOWICE-Komputery-Laptopy-Poleasingowe-stock-5-pol.html':
-              _edrone.customer_tags = 'Katowice'
-              break;
-            case 'https://amso.pl/AMSO-LODZ-Komputery-Laptopy-Poleasingowe-stock-4-pol.html':
-              _edrone.customer_tags = 'Łódź'
-              break;
-            case 'https://amso.pl/AMSO-LUBLIN-Komputery-Laptopy-Poleasingowe-stock-7-pol.html':
-              _edrone.customer_tags = 'Lublin'
-              break;
-            case 'https://amso.pl/AMSO-KIELCE-Komputery-Laptopy-Poleasingowe-stock-13-pol.html':
-              _edrone.customer_tags = 'Kielce'
-              break;
-            case 'https://amso.pl/AMSO-WARSZAWA-Komputery-Laptopy-Poleasingowe-stock-3-pol.html':
-              _edrone.customer_tags = 'Warszawa'
-              break;
-            case 'https://amso.pl/AMSO-BIELSKO-BIALA-Komputery-Laptopy-Poleasingow-stock-14-pol.html':
-              _edrone.customer_tags = 'BielskoBiała'
-              break;
-            case 'https://amso.pl/AMSO-GDANSK-Komputery-Laptopy-Poleasingowe-stock-17-pol.html':
-              _edrone.customer_tags = 'Gdańsk'
-              break;
-            case 'https://amso.pl/AMSO-WROCLAW-Komputery-Laptopy-Poleasingowe-stock-16-pol.html':
-              _edrone.customer_tags = 'Wrocław'
-              break;
-            case 'https://amso.pl/AMSO-POZNAN-Komputery-Laptopy-Poleasingowe-stock-15-pol.html':
-              _edrone.customer_tags = 'Poznań'
-              break;
-          }
-          if (subscriptionCheckbox && subscriptionCheckbox.checked) {
-            _edrone.subscriber_status = '1'
-            _edrone.init();
-            localStorage.setItem("sub", "1");
-          }
-        }
-      }
-    } else {
-      setTimeout(function () {
-        localStorage.removeItem('sub')
-      },
-        5000);
-    }
-  })
-})();
-
-
 //multitags
 const buttonLanding = document.querySelector('button.action.subscribe.primary');
 if (buttonLanding !== null) {
@@ -306,7 +183,7 @@ if (window.location.href.indexOf('basket/noreg') >-1) {
 }
 
 
-//when we have two forms on one site: https://malaszklarnia.pl/poradnik/
+//when we have two forms on one site
 if (window.location.href.includes('poradnik')) {
     const formContainers = document.querySelectorAll('#mailerlite-form_2')
     if (formContainers !== null) {
@@ -328,7 +205,7 @@ if (window.location.href.includes('poradnik')) {
     }
 }
 
-//subscribe without checkbox <3 https://edrone.atlassian.net/browse/ED-48229
+//subscribe without checkbox <3
 const box = document.querySelector('input[name="order_confirmations[14]"]');
 if (box !== null) {
     box.addEventListener('click', () => {

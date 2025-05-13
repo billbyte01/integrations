@@ -21,7 +21,7 @@
 	}
 })()
 
-//blocking orders from one category, kawawbiurze.pl
+//blocking orders from one category
 const updateInit = () => {
 	if (typeof _edrone.init === 'function') {
 		const oldInit = _edrone.init

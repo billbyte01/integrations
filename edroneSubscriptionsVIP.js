@@ -161,3 +161,78 @@ if (window.location.href.includes('zamowienie,4')) {
 		}
 	})
 })()
+
+// Shoper Storefront 5.0.0
+;(function () {
+	function attachAddToCartListener() {
+		// Prevent multiple bindings
+		document.body.removeEventListener('mousedown', handleMouseDown)
+		document.body.addEventListener('mousedown', handleMouseDown)
+	}
+	function handleMouseDown(e) {
+        // For category pages below:
+		var containerName = '.product-tile'
+		var addToCartButtonName = 'buy-button'
+		var productIdName = 'buy-button'
+		var productAttributeName = 'product-id'
+        // For product pages below:
+        // var containerName = '.product-actions'
+		// var addToCartButtonName = '.product-actions__buy-button'
+		// var productIdName = '.product-actions__buy-button'
+		// var productAttributeName = 'product-id'
+		var productContainerList = document.querySelectorAll(containerName)
+		if (productContainerList.length > 0) {
+			productContainerList.forEach(function (container) {
+				var addToCartButton = container.querySelector(addToCartButtonName)
+				var productId = container.querySelector(productIdName)
+				if (addToCartButton) {
+					var eventPath = e.composedPath ? e.composedPath() : e.path || []
+					if (eventPath.includes(addToCartButton)) {
+						if (productId) {
+							_edrone.product_category_ids = ''
+							_edrone.product_category_names = ''
+							_edrone.product_titles = ''
+							_edrone.product_urls = ''
+							_edrone.product_images = ''
+							_edrone.product_ids = productId.getAttribute(productAttributeName)
+						}
+						_edrone.action_type = 'add_to_cart'
+						_edrone.init()
+					}
+				}
+			})
+		}
+	}
+	function watchUrlChanges(callback) {
+		let currentUrl = location.href
+		// Observe URL changes via History API
+		const observer = new MutationObserver(() => {
+			if (location.href !== currentUrl) {
+				currentUrl = location.href
+				callback()
+			}
+		})
+		observer.observe(document, { subtree: true, childList: true })
+		// Patch pushState and replaceState
+		;['pushState', 'replaceState'].forEach((method) => {
+			const original = history[method]
+			history[method] = function () {
+				const result = original.apply(this, arguments)
+				const event = new Event(method)
+				window.dispatchEvent(event)
+				return result
+			}
+		})
+		window.addEventListener('popstate', callback)
+		window.addEventListener('pushState', callback)
+		window.addEventListener('replaceState', callback)
+	}
+	// Initialize on load
+	attachAddToCartListener()
+	// Re-attach listener on URL changes
+	watchUrlChanges(() => {
+		setTimeout(() => {
+			attachAddToCartListener()
+		}, 300) // Delay to allow DOM update
+	})
+})()
